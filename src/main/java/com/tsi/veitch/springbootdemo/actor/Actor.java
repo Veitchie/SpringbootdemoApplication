@@ -1,6 +1,10 @@
 package com.tsi.veitch.springbootdemo.actor;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tsi.veitch.springbootdemo.film.Film;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="actor")
@@ -11,8 +15,14 @@ public class Actor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int actor_id;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "actorSet")
+    public Set<Film> films;
+
     //Attributes
+    @Column(name="first_name")
     private String first_name;
+    @Column(name="last_name")
     private String last_name;
 
     public Actor(String first_name, String last_name){

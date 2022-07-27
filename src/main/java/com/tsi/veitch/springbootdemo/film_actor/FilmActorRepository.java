@@ -1,4 +1,4 @@
-package com.tsi.veitch.springbootdemo;
+package com.tsi.veitch.springbootdemo.film_actor;
 
 import org.springframework.data.repository.CrudRepository;
 

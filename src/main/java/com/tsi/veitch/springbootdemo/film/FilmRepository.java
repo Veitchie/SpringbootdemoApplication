@@ -8,6 +8,8 @@ import java.util.Collection;
 
 public interface FilmRepository extends CrudRepository<Film,Integer> {
 
+    Film findByFilmId(int id);
+
     @Query(value = "SELECT * FROM film WHERE film_id = ?1", nativeQuery = true) Collection<Film> getFilmFromID(int id);
 
     @Query(
@@ -15,6 +17,10 @@ public interface FilmRepository extends CrudRepository<Film,Integer> {
             nativeQuery = true)
     String getIdFromTitle(String title);
 
-    @Query(value = "SELECT actor.* FROM actor INNER JOIN film_actor on actor.actor_id=film_actor.actor_id inner join film on film_actor.film_id=film.film_id AND film.film_id=?1", nativeQuery = true) Collection<Actor> returnActorsByID(int id);
-    //actor.actor_id AS actor_id, actor.first_name AS first_name, actor.last_name AS last_name
+    @Query(value = "SELECT film.* FROM film INNER JOIN film_actor ON film.film_id=film_actor.film_id INNER JOIN actor ON film_actor.actor_id=actor.actor_id AND actor.actor_id=?1", nativeQuery = true)
+    Collection<Film> returnFilmByID(int id);
+
+    @Query(value = "SELECT film.* FROM film INNER JOIN film_category ON film.film_id=film_category.film_id INNER JOIN category ON film_category.category_id=category.category_id AND category.category_id=?1", nativeQuery = true)
+    Collection<Film> getFilmFromCat(int id);
+
 }
