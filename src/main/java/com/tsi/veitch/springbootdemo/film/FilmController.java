@@ -4,7 +4,7 @@ import com.tsi.veitch.springbootdemo.actor.Actor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins="*")
+//@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/Sakila/film")
 public class FilmController {
