@@ -23,6 +23,15 @@ public class FilmController {
         return filmRepository.findAll();
     }
 
+    @GetMapping()
+    public @ResponseBody
+    Iterable<Film>getAllActors(@RequestParam(name = "id", required = false) Integer id ){
+        if (id != null){
+            return filmRepository.findByFilmId(id);
+        }
+        return filmRepository.findAll();
+    }
+
     // Return all films starring a particular actor, given the actor ID
     @GetMapping("/Get_films_from_actor_id")
     public @ResponseBody
@@ -34,7 +43,7 @@ public class FilmController {
     @GetMapping("/Get_title_from_id")
     public @ResponseBody
     String getFilmById(@RequestParam int id){
-        return filmRepository.findByFilmId(id).getTitle();
+        return filmRepository.findByFilmId(id).iterator().next().getTitle();
     }
 
     // Return the ID of a film, given the title
@@ -62,7 +71,7 @@ public class FilmController {
     @GetMapping("/Get_actors_from_id")
     public @ResponseBody
     Iterable<Actor> getActorsFromID(@RequestParam int id){
-        return filmRepository.findByFilmId(id).getActorSet();
+        return filmRepository.findByFilmId(id).iterator().next().getActorSet();
     }
 
 }

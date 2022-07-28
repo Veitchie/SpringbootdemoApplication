@@ -8,7 +8,7 @@ import java.util.Collection;
 
 public interface FilmRepository extends CrudRepository<Film,Integer> {
 
-    Film findByFilmId(int id);
+    Iterable<Film> findByFilmId(int id);
 
     @Query(
             value = "SELECT film_id FROM film WHERE title = ?1",
