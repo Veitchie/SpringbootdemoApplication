@@ -10,8 +10,6 @@ public interface FilmRepository extends CrudRepository<Film,Integer> {
 
     Film findByFilmId(int id);
 
-    @Query(value = "SELECT * FROM film WHERE film_id = ?1", nativeQuery = true) Collection<Film> getFilmFromID(int id);
-
     @Query(
             value = "SELECT film_id FROM film WHERE title = ?1",
             nativeQuery = true)

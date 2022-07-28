@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins="*")
 @RestController
-@RequestMapping("/Sakila")
+@RequestMapping("/Sakila/film")
 public class FilmController {
 
     @Autowired
@@ -35,7 +35,6 @@ public class FilmController {
     public @ResponseBody
     String getFilmById(@RequestParam int id){
         return filmRepository.findByFilmId(id).getTitle();
-        //return filmRepository.getFilmFromID(id);
     }
 
     // Return the ID of a film, given the title
@@ -57,13 +56,6 @@ public class FilmController {
     public @ResponseBody
     int getStockFromID(@RequestParam int id){
         return filmRepository.getStockFromID(id);
-    }
-
-    // Return the number of copies of a film in stock, given the ID
-    @GetMapping("/Get_stock_from_id")
-    public @ResponseBody
-    int getStockFromID2(@RequestParam int id){
-        return filmRepository.findByFilmId(id).getStock();
     }
 
     // Return the actors in a film, given the ID

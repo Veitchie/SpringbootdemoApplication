@@ -43,9 +43,6 @@ public class Film {
     @Column(name="specialFeatures")
     private String specialFeatures = null;
 
-    @Formula(value = "SELECT count(*) FROM inventory INNER JOIN film ON inventory.film_id=film.film_id AND film.film_id=filmId;")
-    private int stock;
-
     @ManyToMany
     @JoinTable(
             name = "film_category",
@@ -178,7 +175,4 @@ public class Film {
         return actorSet;
     }
 
-    public int getStock() {
-        return stock;
-    }
 }
