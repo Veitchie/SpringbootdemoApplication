@@ -14,7 +14,7 @@ public class CategoryController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public CategoryController(CategoryRepository filmRepository){
+    public CategoryController(CategoryRepository categoryRepository){
         this.categoryRepository = categoryRepository;
     }
 
