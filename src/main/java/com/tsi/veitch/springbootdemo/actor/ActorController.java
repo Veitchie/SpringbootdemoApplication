@@ -22,10 +22,4 @@ public class ActorController {
         return actorRepository.findAll();
     }
 
-    // Return all actors in a film, given the film ID
-    @GetMapping("/Get_actors_from_film_id")
-    public @ResponseBody
-    Iterable<Actor>getActorByFilm(@RequestParam int id){
-        return actorRepository.returnActorsByID(id);
-    }
 }

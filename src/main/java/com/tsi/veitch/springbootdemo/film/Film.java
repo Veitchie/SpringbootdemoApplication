@@ -3,6 +3,7 @@ package com.tsi.veitch.springbootdemo.film;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tsi.veitch.springbootdemo.actor.Actor;
 import com.tsi.veitch.springbootdemo.category.Category;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,20 +17,6 @@ public class Film {
     @Column(name="film_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int filmId;
-
-    @ManyToMany
-    @JoinTable(
-            name = "film_category",
-            joinColumns = @JoinColumn(name = "film_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
-    public Set<Category> categorySet;
-
-    @ManyToMany
-    @JoinTable(
-            name = "film_actor",
-            joinColumns = @JoinColumn(name = "actor_id"),
-            inverseJoinColumns = @JoinColumn(name = "film_id"))
-    public Set<Actor> actorSet;
 
     //Attributes
     @Column(name="title")
@@ -55,6 +42,23 @@ public class Film {
     private String rating = "G";
     @Column(name="specialFeatures")
     private String specialFeatures = null;
+
+    @Formula(value = "SELECT count(*) FROM inventory INNER JOIN film ON inventory.film_id=film.film_id AND film.film_id=filmId;")
+    private int stock;
+
+    @ManyToMany
+    @JoinTable(
+            name = "film_category",
+            joinColumns = @JoinColumn(name = "film_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    public Set<Category> categorySet;
+
+    @ManyToMany
+    @JoinTable(
+            name = "film_actor",
+            joinColumns = @JoinColumn(name = "actor_id"),
+            inverseJoinColumns = @JoinColumn(name = "film_id"))
+    public Set<Actor> actorSet;
 
     public Film(String title, String description, Date releaseYear, Integer languageId, Integer originalLanguageId, Integer rentalDuration, Double rentalRate,
                 Integer length, Double replacementCost, String rating, String specialFeatures){
@@ -170,4 +174,11 @@ public class Film {
         this.specialFeatures = specialFeatures;
     }
 
+    public Set<Actor> getActorSet() {
+        return actorSet;
+    }
+
+    public int getStock() {
+        return stock;
+    }
 }

@@ -1,5 +1,6 @@
 package com.tsi.veitch.springbootdemo.film;
 
+import com.tsi.veitch.springbootdemo.actor.Actor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,8 +33,8 @@ public class FilmController {
     // Return film title, given the film ID
     @GetMapping("/Get_title_from_id")
     public @ResponseBody
-    Film getFilmById(@RequestParam int id){
-        return filmRepository.findByFilmId(id);
+    String getFilmById(@RequestParam int id){
+        return filmRepository.findByFilmId(id).getTitle();
         //return filmRepository.getFilmFromID(id);
     }
 
@@ -52,9 +53,24 @@ public class FilmController {
     }
 
     // Return the number of copies of a film in stock, given the ID
-    @GetMapping("/Get_stock_from_id")
+    @GetMapping("/Get_accurate_stock_from_id")
     public @ResponseBody
     int getStockFromID(@RequestParam int id){
         return filmRepository.getStockFromID(id);
     }
+
+    // Return the number of copies of a film in stock, given the ID
+    @GetMapping("/Get_stock_from_id")
+    public @ResponseBody
+    int getStockFromID2(@RequestParam int id){
+        return filmRepository.findByFilmId(id).getStock();
+    }
+
+    // Return the actors in a film, given the ID
+    @GetMapping("/Get_actors_from_id")
+    public @ResponseBody
+    Iterable<Actor> getActorsFromID(@RequestParam int id){
+        return filmRepository.findByFilmId(id).getActorSet();
+    }
+
 }
