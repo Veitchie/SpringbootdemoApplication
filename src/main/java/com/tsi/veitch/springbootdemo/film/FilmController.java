@@ -50,4 +50,11 @@ public class FilmController {
     Iterable<Film> getFilmsByCat(@RequestParam int id){
         return filmRepository.getFilmFromCat(id);
     }
+
+    // Return the number of copies of a film in stock, given the ID
+    @GetMapping("/Get_stock_from_id")
+    public @ResponseBody
+    int getStockFromID(@RequestParam int id){
+        return filmRepository.getStockFromID(id);
+    }
 }

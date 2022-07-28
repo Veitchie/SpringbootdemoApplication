@@ -23,4 +23,7 @@ public interface FilmRepository extends CrudRepository<Film,Integer> {
     @Query(value = "SELECT film.* FROM film INNER JOIN film_category ON film.film_id=film_category.film_id INNER JOIN category ON film_category.category_id=category.category_id AND category.category_id=?1", nativeQuery = true)
     Collection<Film> getFilmFromCat(int id);
 
+    @Query(value = "SELECT count(*) FROM inventory INNER JOIN film ON inventory.film_id=film.film_id AND film.film_id=?1", nativeQuery = true)
+    int getStockFromID(int id);
+
 }
