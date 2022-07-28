@@ -1,6 +1,5 @@
 package com.tsi.veitch.springbootdemo.film;
 
-import com.tsi.veitch.springbootdemo.actor.Actor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

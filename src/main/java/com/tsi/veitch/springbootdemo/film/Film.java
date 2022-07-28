@@ -3,7 +3,6 @@ package com.tsi.veitch.springbootdemo.film;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tsi.veitch.springbootdemo.actor.Actor;
 import com.tsi.veitch.springbootdemo.category.Category;
-import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.util.Date;

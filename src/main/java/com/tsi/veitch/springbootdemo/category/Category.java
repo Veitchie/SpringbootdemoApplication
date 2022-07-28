@@ -1,7 +1,6 @@
 package com.tsi.veitch.springbootdemo.category;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tsi.veitch.springbootdemo.actor.Actor;
 import com.tsi.veitch.springbootdemo.film.Film;
 
 import javax.persistence.*;
