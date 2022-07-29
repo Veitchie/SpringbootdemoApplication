@@ -54,24 +54,11 @@ public class FilmController {
         return applyFilter(filmRepository.findAll(), inAc);
     }
 
-    // Return the films without actorSet
-    @GetMapping("/dynamic")
-    MappingJacksonValue getAllFilms(){
-        SimpleBeanPropertyFilter simpleBeanPropertyFilter = SimpleBeanPropertyFilter.serializeAllExcept("actorSet");
-
-        FilterProvider filterProvider = new SimpleFilterProvider().addFilter("filmResponseFilter", simpleBeanPropertyFilter);
-
-        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(filmRepository.findAll());
-        mappingJacksonValue.setFilters(filterProvider);
-
-        return mappingJacksonValue;
-    }
-
     // Return all films starring a particular actor, given the actor ID
     @GetMapping("/Get_films_from_actor_id")
     public @ResponseBody
-    Iterable<Film>getFilmByActor(@RequestParam int id){
-        return filmRepository.returnFilmByID(id);
+    MappingJacksonValue getFilmByActor(@RequestParam int id, @RequestParam(name = "includeActors", required = false) Integer inAc){
+        return applyFilter(filmRepository.returnFilmByID(id),inAc);
     }
 
     // Return film title, given the film ID
@@ -91,8 +78,8 @@ public class FilmController {
     // Return all films that match the category, given the ID
     @GetMapping("/Get_films_from_cat")
     public @ResponseBody
-    Iterable<Film> getFilmsByCat(@RequestParam int id){
-        return filmRepository.getFilmFromCat(id);
+    MappingJacksonValue getFilmsByCat(@RequestParam int id, @RequestParam(name = "includeActors", required = false) Integer inAc){
+        return applyFilter(filmRepository.getFilmFromCat(id), inAc);
     }
 
     // Return the number of copies of a film in stock, given the ID
