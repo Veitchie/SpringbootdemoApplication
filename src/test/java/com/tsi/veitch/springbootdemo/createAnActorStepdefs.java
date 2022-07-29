@@ -1,9 +1,7 @@
 package com.tsi.veitch.springbootdemo;
 
 import com.tsi.veitch.springbootdemo.actor.Actor;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
