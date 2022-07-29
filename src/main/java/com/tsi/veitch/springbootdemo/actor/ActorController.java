@@ -17,6 +17,7 @@ public class ActorController {
         this.actorRepository = actorRepository;
     }
 
+
     // Return ALL actors or a specific actor if an ID is given
     @GetMapping()
     public @ResponseBody
@@ -26,13 +27,6 @@ public class ActorController {
         }
         return actorRepository.findAll();
     }
-
-    // Update actors roll in a film, given the actor and film id
-//    @PostMapping("/updateRoll")
-//    public @ResponseBody
-//    void updateActorRoll(@RequestParam int actor_id, @RequestParam int film_id){
-//        actorRepository.updateRoll(actor_id, film_id);
-//    }
 
     // Create a new actor with the given ActorDTO
     @PostMapping("/newActor")
@@ -47,6 +41,12 @@ public class ActorController {
         Actor actor = actorRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No user exists with that id."));
         actor.update(firstName, lastName);
         return actorRepository.save(actor);
+    }
+
+    // Delete an actor given an ID
+    @DeleteMapping("/removeActor")
+    public void deleteActorById(@RequestParam int id) {
+        actorRepository.deleteById(id);
     }
 
 }
