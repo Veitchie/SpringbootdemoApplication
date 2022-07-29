@@ -3,6 +3,7 @@ package com.tsi.veitch.springbootdemo.film;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tsi.veitch.springbootdemo.actor.Actor;
 import com.tsi.veitch.springbootdemo.category.Category;
+import com.tsi.veitch.springbootdemo.language.Language;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -24,8 +25,9 @@ public class Film {
     private String description = null;
     @Column(name="releaseYear")
     private Date releaseYear = null;
-    @Column(name="languageId")
-    private Integer languageId;
+    @ManyToOne
+    @JoinColumn(name = "language_id")
+    private Language language;
     @JsonIgnore
     @Column(name="originalLanguageId")
     private Integer originalLanguageId = null;
@@ -61,7 +63,7 @@ public class Film {
         this.title = title;
         this.description = description;
         this.releaseYear = releaseYear;
-        this.languageId = languageId;
+        //this.languageId = languageId;
         this.originalLanguageId = originalLanguageId;
         this.rentalDuration = rentalDuration;
         this.rentalRate = rentalRate;
@@ -106,12 +108,12 @@ public class Film {
         this.releaseYear = releaseYear;
     }
 
-    public Integer getLanguageId() {
-        return languageId;
+    public Language getLanguage() {
+        return language;
     }
 
-    public void setLanguageId(Integer languageId) {
-        this.languageId = languageId;
+    public void setLanguage(Language language) {
+        this.language = language;
     }
 
     public int getOriginalLanguageId() {

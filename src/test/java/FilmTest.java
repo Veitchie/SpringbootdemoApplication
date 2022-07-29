@@ -39,13 +39,13 @@ public class FilmTest {
         assertEquals(new Date(1995), testFilm.getReleaseYear(), "Returned Date was not correct, either set or get not working");
     }
 
-    @Test
-    public void test_getLanguageId(){
-        Film testFilm = new Film();
-
-        testFilm.setLanguageId(800);
-        assertEquals(800, testFilm.getLanguageId(), "Returned LanguageID was not correct, either set or get not working");
-    }
+//    @Test
+//    public void test_getLanguageId(){
+//        Film testFilm = new Film();
+//
+//        testFilm.setLanguageId(800);
+//        assertEquals(800, testFilm.getLanguageId(), "Returned LanguageID was not correct, either set or get not working");
+//    }
 
     @Test
     public void test_getOriginalLanguageId(){
