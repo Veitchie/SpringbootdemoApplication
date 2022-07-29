@@ -1,5 +1,6 @@
 package com.tsi.veitch.springbootdemo.film;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tsi.veitch.springbootdemo.actor.Actor;
 import com.tsi.veitch.springbootdemo.category.Category;
@@ -11,6 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name="film")
+@JsonFilter("filmResponseFilter")
 public class Film {
 
     @Id

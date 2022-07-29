@@ -1,8 +1,17 @@
 package com.tsi.veitch.springbootdemo.film;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.tsi.veitch.springbootdemo.actor.Actor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 //@CrossOrigin(origins="*")
 @RestController
@@ -11,25 +20,51 @@ public class FilmController {
 
     @Autowired
     private FilmRepository filmRepository;
+    private Set<String> filterStrings = new HashSet<>();
 
     public FilmController(FilmRepository filmRepository){
         this.filmRepository = filmRepository;
     }
 
-    // Return ALL films
-    @GetMapping("/All_Films")
-    public @ResponseBody
-    Iterable<Film>getAllFilms(){
-        return filmRepository.findAll();
+    MappingJacksonValue applyFilter(Iterable<Film> films, Integer inAc){
+        filterStrings.clear();
+        if (inAc == null){
+            filterStrings.add("actorSet");
+        }else if (inAc != 1){filterStrings.add("actorSet");}
+
+        SimpleBeanPropertyFilter simpleBeanPropertyFilter = SimpleBeanPropertyFilter.serializeAllExcept(filterStrings);
+
+        FilterProvider filterProvider = new SimpleFilterProvider().addFilter("filmResponseFilter", simpleBeanPropertyFilter);
+
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(films);
+        mappingJacksonValue.setFilters(filterProvider);
+
+        return mappingJacksonValue;
     }
 
+    // Return ALL films
     @GetMapping()
     public @ResponseBody
-    Iterable<Film>getAllActors(@RequestParam(name = "id", required = false) Integer id ){
+    MappingJacksonValue getAllFilms(@RequestParam(name = "id", required = false) Integer id, @RequestParam(name = "includeActors", required = false) Integer inAc){
         if (id != null){
-            return filmRepository.findByFilmId(id);
+            //return filmRepository.findByFilmId(id);
+            return applyFilter(filmRepository.findByFilmId(id), inAc);
         }
-        return filmRepository.findAll();
+        //return filmRepository.findAll();
+        return applyFilter(filmRepository.findAll(), inAc);
+    }
+
+    // Return the films without actorSet
+    @GetMapping("/dynamic")
+    MappingJacksonValue getAllFilms(){
+        SimpleBeanPropertyFilter simpleBeanPropertyFilter = SimpleBeanPropertyFilter.serializeAllExcept("actorSet");
+
+        FilterProvider filterProvider = new SimpleFilterProvider().addFilter("filmResponseFilter", simpleBeanPropertyFilter);
+
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(filmRepository.findAll());
+        mappingJacksonValue.setFilters(filterProvider);
+
+        return mappingJacksonValue;
     }
 
     // Return all films starring a particular actor, given the actor ID
