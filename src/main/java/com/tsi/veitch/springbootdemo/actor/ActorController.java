@@ -1,9 +1,12 @@
 package com.tsi.veitch.springbootdemo.actor;
 
+import com.tsi.veitch.springbootdemo.film.Film;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Set;
 
 //@CrossOrigin(origins="*")
 @RestController
@@ -28,11 +31,23 @@ public class ActorController {
         return actorRepository.findAll();
     }
 
+//    @GetMapping
+//    public @ResponseBody
+//    Set<Film> getBodyOfWork(@RequestParam Integer id){
+//        return actorRepository.findById(id).films;
+//    }
+
     // Create a new actor with the given ActorDTO
     @PostMapping("/newActor")
     public @ResponseBody
     Actor createActor(@RequestParam String firstName, @RequestParam String lastName) {
         return actorRepository.save(new Actor(firstName,lastName));
+    }
+
+    @PostMapping("/newActorDTO")
+    public @ResponseBody
+    Actor createActorDTO(@RequestBody ActorDTO actorDTO) {
+        return actorRepository.save(new Actor(actorDTO));
     }
 
     // Update actor name

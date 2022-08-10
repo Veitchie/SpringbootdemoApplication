@@ -56,8 +56,8 @@ public class Film {
     @ManyToMany
     @JoinTable(
             name = "film_actor",
-            joinColumns = @JoinColumn(name = "actor_id"),
-            inverseJoinColumns = @JoinColumn(name = "film_id"))
+            joinColumns = @JoinColumn(name = "film_id"),
+            inverseJoinColumns = @JoinColumn(name = "actor_id"))
     public Set<Actor> actorSet;
 
     public Film(String title, String description, Date releaseYear, Integer languageId, Integer originalLanguageId, Integer rentalDuration, Double rentalRate,

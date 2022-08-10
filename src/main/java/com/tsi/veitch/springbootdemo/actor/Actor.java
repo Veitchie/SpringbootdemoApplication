@@ -26,7 +26,8 @@ public class Actor {
     private String lastName;
 
     public Actor(ActorDTO actorDTO){
-        this.updateFromDTO(actorDTO);
+        this.firstName = actorDTO.getFirstName();
+        this.lastName = actorDTO.getLastName();
     }
 
     public Actor(String firstName, String lastName){
@@ -36,11 +37,6 @@ public class Actor {
 
     //Empty Constructor
     public Actor() {}
-
-    public void updateFromDTO(ActorDTO actorDTO) {
-        this.firstName = actorDTO.getFirstName().orElse(firstName);
-        this.lastName = actorDTO.getLastName().orElse(lastName);
-    }
 
     public void update(String firstName, String lastName) {
         if (firstName != null){this.firstName = firstName;}

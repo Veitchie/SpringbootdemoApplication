@@ -7,16 +7,20 @@ public class ActorDTO {
     private String firstName;
     private String lastName;
 
-    public Optional<String> getFirstName() {
-        return Optional.ofNullable(firstName);
+    public ActorDTO(String firstName, String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    public String getFirstName() {
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public Optional<String> getLastName() {
-        return Optional.ofNullable(lastName);
+    public String getLastName() {
+        return lastName;
     }
 
     public void setLastName(String lastName) {

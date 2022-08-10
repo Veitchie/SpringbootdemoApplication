@@ -26,7 +26,7 @@ public class FilmController {
         this.filmRepository = filmRepository;
     }
 
-    MappingJacksonValue applyFilter(Iterable<Film> films, Integer inAc){
+    private MappingJacksonValue applyFilter(Iterable<Film> films, Integer inAc){
         filterStrings.clear();
         if (inAc == null){
             filterStrings.add("actorSet");
