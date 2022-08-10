@@ -32,8 +32,6 @@ public class DataSourceConfig {
         dataSourceBuilder.username(username);
         dataSourceBuilder.password(password);
 
-        LOGGER.info("Using data source config:\n  url={}\n  username={}\n  password={}", url, username, password);
-
         return dataSourceBuilder.build();
     }
 
