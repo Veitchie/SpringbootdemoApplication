@@ -80,6 +80,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>amazon-sakila</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
