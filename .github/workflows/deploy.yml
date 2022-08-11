@@ -44,4 +44,4 @@ jobs:
           environment_name: tsiamazonsakila-env
           version_label: ${{github.SHA}}
           region: us-east-1
-          deployment_package: amazon-sakila.jar    
+          deployment_package: amazon-sakila.jar

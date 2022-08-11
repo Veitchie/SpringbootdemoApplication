@@ -1,8 +1,12 @@
 package com.tsi.veitch.springbootdemo.actor;
 
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.tsi.veitch.springbootdemo.film.Film;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -31,11 +35,19 @@ public class ActorController {
         return actorRepository.findAll();
     }
 
-//    @GetMapping
-//    public @ResponseBody
-//    Set<Film> getBodyOfWork(@RequestParam Integer id){
-//        return actorRepository.findById(id).films;
-//    }
+    @GetMapping("/getFilms")
+    public @ResponseBody
+    MappingJacksonValue getBodyOfWork(@RequestParam Integer id){
+
+        SimpleBeanPropertyFilter simpleBeanPropertyFilter = SimpleBeanPropertyFilter.serializeAllExcept();
+
+        FilterProvider filterProvider = new SimpleFilterProvider().addFilter("filmResponseFilter", simpleBeanPropertyFilter);
+
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(actorRepository.findById(id).get().films);
+        mappingJacksonValue.setFilters(filterProvider);
+
+        return mappingJacksonValue;
+    }
 
     // Create a new actor with the given ActorDTO
     @PostMapping("/newActor")
