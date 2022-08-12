@@ -1,0 +1,8 @@
+auth0:
+  audience: awseb-e-kaerrwmk7u-stack-awsebrdsdatabase-7gpaqdrbhkow.c3mn0phbdaft.us-east-1.rds.amazonaws.com
+spring:
+  security:
+    oauth2:
+        resourceserver:
+            jwt:
+                issuer-uri: https://dev-pg4hxtqj.us.auth0.com/
