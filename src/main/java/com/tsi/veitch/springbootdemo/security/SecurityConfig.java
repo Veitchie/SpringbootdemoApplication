@@ -20,7 +20,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .mvcMatchers("/Sakila/**").permitAll()
-                .mvcMatchers("/Sakila/actor/**").authenticated()
+                .mvcMatchers("/Sakila/actor/**").hasAuthority("SCOPE_read:messages")
                 .and().cors()
                 .and().oauth2ResourceServer().jwt();
         return http.build();

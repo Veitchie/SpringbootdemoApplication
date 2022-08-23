@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("/")
 public class SpringbootdemoApplication {
 
