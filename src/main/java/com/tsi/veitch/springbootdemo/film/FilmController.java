@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-//@CrossOrigin(origins="*")
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
 @RequestMapping("/Sakila/film")
 public class FilmController {

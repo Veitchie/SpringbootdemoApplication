@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Set;
 
-//@CrossOrigin(origins="*")
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
 @RequestMapping("/Sakila/actor")
 public class ActorController {
