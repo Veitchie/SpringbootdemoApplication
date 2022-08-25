@@ -1,4 +1,5 @@
 import com.tsi.veitch.springbootdemo.film.Film;
+import com.tsi.veitch.springbootdemo.language.Language;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -93,5 +94,14 @@ class FilmTest {
 
         testFilm.setSpecialFeatures("SPAWNS MONEY");
         assertEquals("SPAWNS MONEY", testFilm.getSpecialFeatures(), "Returned special features was not correct, either set or get not working");
+    }
+
+    @Test
+    void test_getLanguage(){
+        Film testFilm = new Film();
+        Language testLang = new Language();
+
+        testFilm.setLanguage(testLang);
+        assertEquals(testLang, testFilm.getLanguage(), "Returned language was not correct, either set or get not working");
     }
 }
