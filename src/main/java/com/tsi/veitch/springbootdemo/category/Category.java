@@ -24,7 +24,9 @@ public class Category {
     private String name;
 
     //Empty Constructor
-    public Category(){}
+    public Category(){
+        //Used by the application
+    }
 
     public int getCategoryId() {
         return categoryId;

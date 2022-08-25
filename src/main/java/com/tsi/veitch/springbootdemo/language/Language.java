@@ -19,7 +19,9 @@ public class Language {
         return languageId;
     }
 
-    public Language(){}
+    public Language(){
+        //Used by the application
+    }
 
     public void setLanguageId(int languageId) {
         this.languageId = languageId;

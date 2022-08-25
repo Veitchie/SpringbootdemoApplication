@@ -61,7 +61,9 @@ public class Film {
     public Set<Actor> actorSet;
 
     //Empty Constructor
-    public Film(){}
+    public Film(){
+        //Used by the application
+    }
 
     public String getTitle() {
         return title;
