@@ -23,4 +23,7 @@ public interface FilmRepository extends CrudRepository<Film,Integer> {
     @Query(value = "SELECT count(*) FROM inventory INNER JOIN film ON inventory.film_id=film.film_id AND film.film_id=?1", nativeQuery = true)
     int getStockFromID(int id);
 
+    Iterable<Film> findByTitleContainingIgnoreCase(String query);
+    Iterable<Film> findByDescriptionContainingIgnoreCase(String query);
+
 }

@@ -49,6 +49,12 @@ public class ActorController {
         return mappingJacksonValue;
     }
 
+    @GetMapping("/search")
+    public @ResponseBody
+    Iterable<Actor> searchName(@RequestParam String query){
+        return actorRepository.findByFullNameContainingIgnoreCase(query);
+    }
+
     // Create a new actor with the given ActorDTO
     @PostMapping("/newActor")
     public @ResponseBody

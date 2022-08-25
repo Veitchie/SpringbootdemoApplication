@@ -82,6 +82,28 @@ public class FilmController {
         return applyFilter(filmRepository.getFilmFromCat(id), inAc);
     }
 
+    @GetMapping("/search")
+    public @ResponseBody
+    MappingJacksonValue getFilmsByCat(@RequestParam String query, @RequestParam(name = "includeActors", required = false) Integer inAc){
+        boolean dup = false;
+        ArrayList<Film> result1 = (ArrayList<Film>) filmRepository.findByTitleContainingIgnoreCase(query);
+        ArrayList<Film> result2 = (ArrayList<Film>) filmRepository.findByDescriptionContainingIgnoreCase(query);
+
+        for (Film item:result2) {
+            dup = false;
+            for (Film newItem: result1) {
+                if (item == newItem){
+                    dup = true;
+                    break;
+                }
+            }
+            if (!dup){
+                result1.add(item);
+            }
+        }
+        return applyFilter(result1, inAc);
+    }
+
     // Return the number of copies of a film in stock, given the ID
     @GetMapping("/Get_accurate_stock_from_id")
     public @ResponseBody

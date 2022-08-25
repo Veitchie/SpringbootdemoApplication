@@ -2,6 +2,7 @@ package com.tsi.veitch.springbootdemo.actor;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tsi.veitch.springbootdemo.film.Film;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -24,6 +25,8 @@ public class Actor {
     private String firstName;
     @Column(name="last_name")
     private String lastName;
+    @Formula("concat(first_name, ' ', last_name)")
+    private String fullName;
 
     public Actor(ActorDTO actorDTO){
         this.firstName = actorDTO.getFirstName();
@@ -67,5 +70,13 @@ public class Actor {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }
