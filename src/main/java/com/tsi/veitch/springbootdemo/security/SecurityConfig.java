@@ -21,9 +21,9 @@ public class SecurityConfig {
         http.authorizeRequests()
                 .mvcMatchers("/Sakila/film").permitAll()
                 .mvcMatchers("/Sakila/actor").permitAll()
-                .mvcMatchers("/Sakila/actor/newActor").hasAuthority("read:messages")
-                .mvcMatchers("/Sakila/actor/removeActor").hasAuthority("read:messages")
-                .mvcMatchers("/Sakila/actor/updateName").hasAuthority("read:messages")
+                .mvcMatchers("/Sakila/actor/newActor").authenticated()
+                .mvcMatchers("/Sakila/actor/removeActor").authenticated()
+                .mvcMatchers("/Sakila/actor/updateName").authenticated()
                 .and().cors()
                 .and().oauth2ResourceServer().jwt();
         http.csrf().disable();
