@@ -13,7 +13,7 @@ public class Category {
     @Id
     @Column(name="category_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int category_id;
+    private int categoryId;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "categorySet")
@@ -30,12 +30,12 @@ public class Category {
     //Empty Constructor
     public Category(){}
 
-    public int getCategory_id() {
-        return category_id;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getName() {

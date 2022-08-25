@@ -1,7 +1,5 @@
 package com.tsi.veitch.springbootdemo.actor;
 
-import java.util.Optional;
-
 public class ActorDTO {
 
     private String firstName;

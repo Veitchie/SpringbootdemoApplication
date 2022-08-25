@@ -1,6 +1,5 @@
 package com.tsi.veitch.springbootdemo.film;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
@@ -28,9 +27,14 @@ public class FilmController {
 
     private MappingJacksonValue applyFilter(Iterable<Film> films, Integer inAc){
         filterStrings.clear();
-        if (inAc == null){
+
+        if (inAc != null){
+            if (inAc != 1){
+                filterStrings.add("actorSet");
+            }
+        }else {
             filterStrings.add("actorSet");
-        }else if (inAc != 1){filterStrings.add("actorSet");}
+        }
 
         SimpleBeanPropertyFilter simpleBeanPropertyFilter = SimpleBeanPropertyFilter.serializeAllExcept(filterStrings);
 
@@ -47,10 +51,8 @@ public class FilmController {
     public @ResponseBody
     MappingJacksonValue getAllFilms(@RequestParam(name = "id", required = false) Integer id, @RequestParam(name = "includeActors", required = false) Integer inAc){
         if (id != null){
-            //return filmRepository.findByFilmId(id);
             return applyFilter(filmRepository.findByFilmId(id), inAc);
         }
-        //return filmRepository.findAll();
         return applyFilter(filmRepository.findAll(), inAc);
     }
 

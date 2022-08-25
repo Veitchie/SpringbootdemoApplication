@@ -65,7 +65,6 @@ public class Film {
         this.title = title;
         this.description = description;
         this.releaseYear = releaseYear;
-        //this.languageId = languageId;
         this.originalLanguageId = originalLanguageId;
         this.rentalDuration = rentalDuration;
         this.rentalRate = rentalRate;

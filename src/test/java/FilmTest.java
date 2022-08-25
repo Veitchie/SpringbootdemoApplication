@@ -5,10 +5,10 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FilmTest {
+class FilmTest {
 
     @Test
-    public void test_getTitle(){
+    void test_getTitle(){
         Film testFilm = new Film();
 
         testFilm.setTitle("FILM_TITLE");
@@ -16,7 +16,7 @@ public class FilmTest {
     }
 
     @Test
-    public void test_getDescription(){
+    void test_getDescription(){
         Film testFilm = new Film();
 
         testFilm.setDescription("FILM_DESCRIPTION");
@@ -24,7 +24,7 @@ public class FilmTest {
     }
 
     @Test
-    public void test_getFilmId(){
+    void test_getFilmId(){
         Film testFilm = new Film();
 
         testFilm.setFilmId(1010);
@@ -32,7 +32,7 @@ public class FilmTest {
     }
 
     @Test
-    public void test_getReleaseYear(){
+    void test_getReleaseYear(){
         Film testFilm = new Film();
 
         testFilm.setReleaseYear(new Date(1995));
@@ -40,7 +40,7 @@ public class FilmTest {
     }
 
     @Test
-    public void test_getOriginalLanguageId(){
+    void test_getOriginalLanguageId(){
         Film testFilm = new Film();
 
         testFilm.setOriginalLanguageId(880);
@@ -48,7 +48,7 @@ public class FilmTest {
     }
 
     @Test
-    public void test_getRentalDuration(){
+    void test_getRentalDuration(){
         Film testFilm = new Film();
 
         testFilm.setRentalDuration(2);
@@ -56,7 +56,7 @@ public class FilmTest {
     }
 
     @Test
-    public void test_getRentalRate(){
+    void test_getRentalRate(){
         Film testFilm = new Film();
 
         testFilm.setRentalRate(3.59);
@@ -64,7 +64,7 @@ public class FilmTest {
     }
 
     @Test
-    public void test_getLength(){
+    void test_getLength(){
         Film testFilm = new Film();
 
         testFilm.setLength(3);
@@ -72,7 +72,7 @@ public class FilmTest {
     }
 
     @Test
-    public void test_getReplacementCost(){
+    void test_getReplacementCost(){
         Film testFilm = new Film();
 
         testFilm.setReplacementCost(400.99);
@@ -80,7 +80,7 @@ public class FilmTest {
     }
 
     @Test
-    public void test_getRating(){
+    void test_getRating(){
         Film testFilm = new Film();
 
         testFilm.setRating("SUPER VIOLENT");
@@ -88,7 +88,7 @@ public class FilmTest {
     }
 
     @Test
-    public void test_getSpecialFeatures(){
+    void test_getSpecialFeatures(){
         Film testFilm = new Film();
 
         testFilm.setSpecialFeatures("SPAWNS MONEY");

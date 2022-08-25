@@ -1,7 +1,5 @@
 package com.tsi.veitch.springbootdemo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,8 +11,6 @@ import javax.sql.DataSource;
  */
 @Configuration
 public class DataSourceConfig {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(DataSourceConfig.class);
 
     @Bean
     public DataSource getDataSource() {

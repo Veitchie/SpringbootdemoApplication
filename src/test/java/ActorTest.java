@@ -3,10 +3,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ActorTest {
+class ActorTest {
 
     @Test
-    public void test_getActorId(){
+    void test_getActorId(){
         Actor testActor = new Actor();
 
         testActor.setActorId(666);
@@ -14,7 +14,7 @@ public class ActorTest {
     }
 
     @Test
-    public void test_getFirstName(){
+    void test_getFirstName(){
         Actor testActor = new Actor();
 
         testActor.setFirstName("JOHN");
@@ -22,7 +22,7 @@ public class ActorTest {
     }
 
     @Test
-    public void test_getLastName(){
+    void test_getLastName(){
         Actor testActor = new Actor();
 
         testActor.setLastName("DOE");
