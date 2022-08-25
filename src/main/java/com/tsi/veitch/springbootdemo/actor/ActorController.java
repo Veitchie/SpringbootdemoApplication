@@ -9,6 +9,8 @@ import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Optional;
+
 
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
@@ -42,9 +44,10 @@ public class ActorController {
         FilterProvider filterProvider = new SimpleFilterProvider().addFilter("filmResponseFilter", simpleBeanPropertyFilter);
 
         MappingJacksonValue mappingJacksonValue = null;
+        Optional<Actor> actors = actorRepository.findById(id);
 
-        if (actorRepository.findById(id).isPresent()){
-            mappingJacksonValue = new MappingJacksonValue(actorRepository.findById(id).get().films);
+        if (actors.isPresent()){
+            mappingJacksonValue = new MappingJacksonValue(actors.get().films);
             mappingJacksonValue.setFilters(filterProvider);
         }
 
