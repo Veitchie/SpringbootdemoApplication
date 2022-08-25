@@ -19,7 +19,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .mvcMatchers("/Sakila/**").permitAll()
+                .mvcMatchers("/Sakila/film").permitAll()
+                .mvcMatchers("/Sakila/film/**").permitAll()
                 .mvcMatchers("/Sakila/actor/**").hasAuthority("SCOPE_read:messages")
                 .and().cors()
                 .and().oauth2ResourceServer().jwt();
