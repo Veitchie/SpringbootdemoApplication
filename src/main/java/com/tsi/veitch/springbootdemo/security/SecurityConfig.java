@@ -19,7 +19,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/Sakila/actor/**").hasAuthority("write:actors")
+                .mvcMatchers("/Sakila/film/**").permitAll()
+                .mvcMatchers("/Sakila/actor/newActor").hasAuthority("write:actors")
+                .mvcMatchers("/Sakila/actor/removeActor").hasAuthority("write:actors")
+                .mvcMatchers("/Sakila/actor/updateName").hasAuthority("write:actors")
                 .and().cors()
                 .and().oauth2ResourceServer().jwt();
         http.csrf().disable();
