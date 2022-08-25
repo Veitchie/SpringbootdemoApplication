@@ -60,20 +60,6 @@ public class Film {
             inverseJoinColumns = @JoinColumn(name = "actor_id"))
     public Set<Actor> actorSet;
 
-    public Film(String title, String description, Date releaseYear, Integer originalLanguageId, Integer rentalDuration, Double rentalRate,
-                Integer length, Double replacementCost, String rating, String specialFeatures){
-        this.title = title;
-        this.description = description;
-        this.releaseYear = releaseYear;
-        this.originalLanguageId = originalLanguageId;
-        this.rentalDuration = rentalDuration;
-        this.rentalRate = rentalRate;
-        this.length = length;
-        this.replacementCost = replacementCost;
-        this.rating = rating;
-        this.specialFeatures = specialFeatures;
-    }
-
     //Empty Constructor
     public Film(){}
 
