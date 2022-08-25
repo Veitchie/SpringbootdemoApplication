@@ -20,7 +20,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .mvcMatchers("/Sakila/film/**").permitAll()
-                .antMatchers("/Sakila/actor/**").hasAuthority("PERMISSION_write:actors");
+                .antMatchers("/Sakila/actor/**").hasAuthority("PERMISSION_write:actors")
+                .and().cors()
+                .and().oauth2ResourceServer().jwt();
         http.csrf().disable();
         return http.build();
     }
