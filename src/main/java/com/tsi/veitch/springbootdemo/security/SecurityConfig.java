@@ -49,8 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // https://stackoverflow.com/questions/36296869/spring-security-permitall-still-considering-token-passed-in-authorization-header
                 .antMatchers(HttpMethod.GET, "/Sakila/film").permitAll()
                 .antMatchers(HttpMethod.GET, "/Sakila/actor").permitAll()
-                //.antMatchers(HttpMethod.GET, "/Sakila/private").authenticated()
-                .antMatchers(HttpMethod.GET, "/Sakila/actor/newActor").hasAuthority("write:actors");
+                .antMatchers(HttpMethod.POST, "/Sakila/admin").hasAuthority("SCOPE_write:actors")
+                .antMatchers(HttpMethod.PATCH, "/Sakila/admin").hasAuthority("SCOPE_write:actors")
+                .antMatchers(HttpMethod.DELETE, "/Sakila/admin").hasAuthority("SCOPE_write:actors");
     }
 
 }

@@ -60,31 +60,6 @@ public class ActorController {
         return actorRepository.findByFullNameContainingIgnoreCase(query);
     }
 
-    // Create a new actor with the given ActorDTO
-    @PostMapping("/newActor")
-    public @ResponseBody
-    Actor createActor(@RequestParam String firstName, @RequestParam String lastName) {
-        return actorRepository.save(new Actor(firstName,lastName));
-    }
 
-    @PostMapping("/newActorDTO")
-    public @ResponseBody
-    Actor createActorDTO(@RequestBody ActorDTO actorDTO) {
-        return actorRepository.save(new Actor(actorDTO));
-    }
-
-    // Update actor name
-    @PatchMapping("/updateName")
-    public @ResponseBody Actor updateActorById(@RequestParam int id, @RequestParam String firstName, @RequestParam String lastName) {
-        Actor actor = actorRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No user exists with that id."));
-        actor.update(firstName, lastName);
-        return actorRepository.save(actor);
-    }
-
-    // Delete an actor given an ID
-    @DeleteMapping("/removeActor")
-    public void deleteActorById(@RequestParam int id) {
-        actorRepository.deleteById(id);
-    }
 
 }
