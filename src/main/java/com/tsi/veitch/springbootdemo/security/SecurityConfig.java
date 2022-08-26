@@ -16,7 +16,7 @@ import java.util.Arrays;
 
 
 @Configuration
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity()//debug = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("${auth0.audience}")
